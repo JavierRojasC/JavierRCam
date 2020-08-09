@@ -14,7 +14,8 @@ return(Table.scrap)}
 Data.Multiv <- function(){
   url.mult <- 'https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/datos_mv.csv'
   Datos.Covid.911 <- read.csv2(url.mult)
-  return(Datos.Covid.911)
+  Datos.covid.911 <- Datos.Covid.911[1:24,]
+  return(Datos.covid.911)
 }
 
 #source('https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/Scrap.DATA.ec.JRojas.R')
