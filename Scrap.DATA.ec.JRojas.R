@@ -10,3 +10,14 @@ Table.scrap$Confirmados <- sub(",", "", Table.scrap$Confirmados, fixed = TRUE)
 Table.scrap$Confirmados <- as.numeric(Table.scrap$Confirmados)
 return(Table.scrap)}
 
+
+Data.Multiv <- function(){
+  url.mult <- 'https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/datos_mv.csv'
+  Datos.Covid.911 <- read.csv2(url.mult)
+  return(Datos.Covid.911)
+}
+
+#source('https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/Scrap.DATA.ec.JRojas.R')
+#Datos.autoincrement <- DATA.EC.JRojas()
+#Datos.cov.911 <- Data.Multiv()
+
