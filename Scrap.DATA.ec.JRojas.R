@@ -27,7 +27,26 @@ print('ADD')
   return(Datos.Categ)
 }
 
+
+
+Fall.etario <- function(){
+  url.fall.et <- 'https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/Etario%20AC.csv'
+  Base.fall.et <- read.csv2(url.fall.et)
+  return(Base.fall.et)
+  
+}
+
+Conf.etario <- function(){
+  url.conf.et <- 'https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/ConfirmadosEdadxProv%20(1).csv'
+  Base.conf.et <- read.csv2(url.conf.et)
+  return(Base.conf.et)
+  
+}
+
 #source('https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/Scrap.DATA.ec.JRojas.R')
 #Datos.autoincrement <- DATA.EC.JRojas()
 #Datos.cov.911 <- Data.Multiv()
+#Datos.categoricos <- Data.Categ()
+
+
 
