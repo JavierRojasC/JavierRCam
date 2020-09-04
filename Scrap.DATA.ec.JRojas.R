@@ -43,10 +43,16 @@ Conf.etario <- function(){
   
 }
 
+dataMDS <- function(){
+url.mds <- 'https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/datMDS.csv'
+DataMDS <- read.csv2(url.mds)
+return(DataMDS)
+}
+
+
 #source('https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/Scrap.DATA.ec.JRojas.R')
 #Datos.autoincrement <- DATA.EC.JRojas()
 #Datos.cov.911 <- Data.Multiv()
 #Datos.categoricos <- Data.Categ()
-
 
 
