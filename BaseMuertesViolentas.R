@@ -1,4 +1,4 @@
 Base <- function(){ 
-  Base <- read_delim("https://www.dropbox.com/s/9dgh5lbs9momyfv/BASE%20MUERTES_VIOLENTAS_y%20CTG%20F.csv?dl=1", 
+  Base <- read_delim("https://github.com/JavierRojasC/JavierRCam/raw/master/BASE%20MUERTES_VIOLENTAS.csv", 
                                                     ";", escape_double = FALSE, trim_ws = TRUE)
   return(Base)}
