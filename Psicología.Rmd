@@ -1,0 +1,152 @@
+---
+title: "Psicología"
+author: "JAVIER ROJAS"
+date: "10/23/2020"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+runtime: shiny
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ca)
+library(readr)
+library(stringr)
+library(highcharter)
+library(shiny)
+BASE_FINAL <- read_csv("https://raw.githubusercontent.com/JavierRojasC/JavierRCam/master/BASE-FINAL.csv")
+BASE_FINAL$RangoEdad[BASE_FINAL$Edad>=40 & BASE_FINAL$Edad<65]='40<=EDAD<65'
+BASE_FINAL$RangoEdad[BASE_FINAL$Edad>=65 & BASE_FINAL$Edad<80]='65<=EDAD<80'
+BASE_FINAL$RangoEdad[BASE_FINAL$Edad>=80 ]='EDAD>=80'
+
+
+
+
+
+```
+
+## Perfil del entrevistado
+
+```{r cars, echo=FALSE, warning=FALSE, message=FALSE}
+BasePerfilEntr <- data.frame(BASE_FINAL$Género,BASE_FINAL$RangoEdad,BASE_FINAL$Estudios,BASE_FINAL$Estado,BASE_FINAL$Ocupación,BASE_FINAL$Residencia,BASE_FINAL$Atención,BASE_FINAL$Discapacidad,BASE_FINAL$Jubilado,BASE_FINAL$Satisfacción,BASE_FINAL$Percepción,BASE_FINAL$Deprimido,BASE_FINAL$Memoria,BASE_FINAL$Fuma,BASE_FINAL$Alcohol,BASE_FINAL$Enfermedad,BASE_FINAL$Demencia,BASE_FINAL$Expuesto)
+#names(BASE_FINAL[,1:18])
+colnames(BasePerfilEntr) <- c("Género"    ,   "Edad"       ,  "Estudios"    , "Estado Civil"    ,   "Ocupación"   , "Residencia"  , "Atención"    , "Discapacidad" ,"Jubilado"    , "Satisfacción con estado de salud" ,"Percepción de edad"  , "Deprimido" ,   "Memoria"     , "Fuma"  ,"Alcohol"  ,  "Enfermedad" ,  "Antecedente familiar con Demencia"   ,  "Expuesto a tóxicos")
+
+
+
+AC <- mjca(BasePerfilEntr)
+AC.SUM <- summary(AC)
+AC.SUM1 <- AC.SUM$columns
+Coord <- data.frame(AC.SUM1[,5],AC.SUM1[,8])/1000
+
+
+
+Nombres <- data.frame(AC.SUM1$name)
+
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,1) == 'G'] <- 'Género'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,1) == 'E'] <- 'Rango de edad'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Es'] <- 'Estudios'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,4) == 'Esta'] <- 'Estado Civil'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,1) == 'O'] <- 'Ocupación'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Re'] <- 'Residencia'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'At'] <- 'Atención'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Di'] <- 'Discapacidad'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Ju'] <- 'Jubilado'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Sa'] <- 'Satisfacción con estado de salud'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Pe'] <- 'Percepción de edad'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'De'] <- 'Deprimido'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Me'] <- 'Memoria'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Fu'] <- 'Fuma'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Al'] <- 'Alcohol'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'En'] <- 'Enfermedad'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'An'] <- 'Antecedente familiar con Demencia'
+Nombres$Group[str_sub(Nombres$AC.SUM1.name,1,2) == 'Ex'] <- 'Expuesto a tóxicos'
+
+xs <- str_split(Nombres$AC.SUM1.name, ":")
+vector_p<-unlist(xs)
+n=1:58
+Nombrecorto <- vector_p[2*n]
+Nombrecorto <- sub("-", ":", Nombrecorto, fixed = TRUE)
+Nombrecorto <- sub("-", ":", Nombrecorto, fixed = TRUE)
+Coord <- data.frame(Coord,Nombrecorto,Nombres$Group)
+Coord <- Coord[Coord$Nombrecorto !='Blanco', ]
+
+
+
+highchart()%>%
+        hc_title(text="Perfil del entrevistado")%>%
+        hc_subtitle(text="Análisis de correspondencia múltiple")%>%
+        hc_subtitle(text="")%>%
+        hc_add_series(Coord, type='scatter', hcaes(x=AC.SUM1...5., y=AC.SUM1...8., name=Nombrecorto, group=Nombres.Group),
+                      dataLabels=list(format="{point.name}",enabled=TRUE),
+                      tooltip = list(pointFormat = "{point.name}"))%>%
+        hc_xAxis(
+          title = list(text = "Dim 1 (67.5 %)"),
+          plotLines = list(list(
+            value = 0,
+            color = '#1D4B5E',
+            width = 3,
+            zIndex = 4,
+            label = list(text = "",
+                         style = list( color = '#1D4B5E', fontWeight = 'bold' )))))%>%
+        hc_yAxis(
+          title = list(text = "Dim 2 (6.1 %)"),
+          plotLines = list(list(
+            value = 0,
+            color = '#1D4B5E',
+            width = 3,
+            zIndex = 4,
+            label = list(text = "",
+                         style = list( color = '#1D4B5E', fontWeight = 'bold' )))))%>%
+        hc_exporting(enabled = TRUE,
+                     filename = "AC Perfil de la víctima")%>% 
+        hc_credits(
+          enabled = TRUE,
+          text = "Fuente: MMSE PARA IDENTIFICAR EL NIVEL COGNITIVO",
+          href = ""
+        )%>%
+        hc_subtitle(text="Análisis de correspondencia múltiple")
+        
+
+
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+BaseBoxPlot <- data.frame(BasePerfilEntr,BASE_FINAL$Calificación)
+inputPanel(selectInput("variable", "Variable:",
+                       choices = colnames(BaseBoxPlot[,1:18])),
+           renderText({
+  SA <- summary(aov(BaseBoxPlot$BASE_FINAL.Calificación~BaseBoxPlot[,input$variable],))
+  if (SA[[1]][['Pr(>F)']][1] < 0.05){
+    response <- paste0('Existen diferencias significativas entre los grupos de ',input$variable)
+  } else if  (SA[[1]][['Pr(>F)']][1] > 0.05){
+    response <- paste0('No existen diferencias significativas entre los grupos de ',input$variable)
+  }
+  
+  response
+  }))
+
+renderHighchart({
+Means <- aggregate(BaseBoxPlot$BASE_FINAL.Calificación ~ BaseBoxPlot[,input$variable], data = BaseBoxPlot, mean)
+colnames(Means) <- c('Nombres', 'Media')
+  
+  hcboxplot(x=BaseBoxPlot$BASE_FINAL.Calificación, var=BaseBoxPlot[,input$variable], name = "Diagrama de cajas", color = "#0E1142", outliers = FALSE,
+          showInLegend=TRUE)%>%
+    hc_yAxis(title = list(text = "Calificación de Mini Examen de Estado Mental"))%>% 
+  hc_xAxis(title = list(text = "Niveles"))%>%
+  hc_chart(type = "column")%>%
+        hc_plotOptions(showInLegend=TRUE,dataLabels=TRUE)%>% 
+  hc_add_series(Means, type='bubble', hcaes(x =Nombres,y=Media),maxSize = "7%",
+                tooltip=list(pointFormat='<br> {point.y} ',headerFormat='<b> Media'), name='Medias',
+                showInLegend=TRUE)
+})
+
+
+
+```
+
+
+
