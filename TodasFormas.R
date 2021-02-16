@@ -1174,19 +1174,18 @@ TodasFormas2 <- function(materia){
   
   
   highchart()%>%
-    hc_add_series(ICC.fit1.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit2.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit3.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit4.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit5.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit6.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit7.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit8.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit9.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit10.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit11.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    hc_add_series(ICC.fit12.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%
-    
+    hc_add_series(ICC.fit1.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit2.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit3.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit4.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit5.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit6.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit7.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit8.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit9.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit10.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit11.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
+    hc_add_series(ICC.fit12.DF, type='line', hcaes(x=x, y=value, group=as.factor(Pregunta)))%>%
     hc_legend(
       align = "right",
       verticalAlign = "top",
