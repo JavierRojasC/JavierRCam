@@ -58,7 +58,7 @@ CaractIndividuo1 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_par
 B1 <- pivot_wider(Base1, names_from ='Pregunta', values_from = 'Correcta')
 C1 <- merge(x=B1, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
 
-C1$distrito[is.na(C$distrito)] <- 'No registrado'
+C1$distrito[is.na(C1$distrito)] <- 'No registrado'
 
 
 
