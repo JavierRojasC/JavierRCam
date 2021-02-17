@@ -603,7 +603,7 @@ highchart()%>%
     x = 0,
     y = 100)%>%
   hc_title(text='Curva Característica del Ítem')%>%
-  hc_subtitle(text= paste0('Forma: Todas las formas' ,'. Campo de conocimiento: ', materia,'.'))%>%
+  hc_subtitle(text= paste0('Forma: Todas las formas. Campo de conocimiento: ', materia,'.'))%>%
   hc_xAxis(title=list(text="Habilidad"))%>%
   hc_yAxis(title=list(text="Probabilidad"),
            plotLines = list(list(
@@ -617,7 +617,7 @@ highchart()%>%
   hc_tooltip(pointFormat = "{point.Pregunta} <br> Prob: {point.y} <br>  Habilidad: {point.x} <br> Forma: {point.Forma}",
              headerFormat= '{point.Pregunta}')%>%
   hc_exporting(enabled = TRUE,
-               filename = paste0('Curva Característica del Ítem - Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>% 
+               filename = paste0('Curva Característica del Ítem - Forma: Todas las formas. Campo de conocimiento: ', materia,'.'))%>% 
   hc_credits(
     enabled = TRUE,
     text = "Fuente: Senescyt",
@@ -1258,7 +1258,7 @@ library(tidyr)
       x = 0,
       y = 100)%>%
     hc_title(text='Curva de Información del Ítem')%>%
-    hc_subtitle(text= paste0('Forma: Todas las formas' ,'. Campo de conocimiento: ', materia,'.'))%>%
+    hc_subtitle(text= paste0('Forma: Todas las formas. Campo de conocimiento: ', materia,'.'))%>%
     hc_xAxis(title=list(text="Habilidad"))%>%
     hc_yAxis(title=list(text="Información"),
              plotLines = list(list(
@@ -1272,7 +1272,7 @@ library(tidyr)
     hc_tooltip(pointFormat = "{point.Pregunta} <br> Información: {point.y} <br>  Habilidad: {point.x} <br> Forma: {point.Forma}",
                headerFormat= '{point.Pregunta}')%>%
     hc_exporting(enabled = TRUE,
-                 filename = paste0('Curva de Información del Ítem - Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>% 
+                 filename = paste0('Curva de Información del Ítem - Forma: Todas las formas. Campo de conocimiento: ', materia,'.'))%>% 
     hc_credits(
       enabled = TRUE,
       text = "Fuente: Senescyt",
