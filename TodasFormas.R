@@ -515,7 +515,7 @@ ICC.fit11 <- plot(fit11, legend = TRUE, cx = "bottomright", lwd = 11,
 ICC.fit11 <- as.data.frame(ICC.fit11) 
 ICC.fit11.GATH <- gather(ICC.fit11, key=z)
 ICC.fit11.DF <- data.frame(rep(ICC.fit11$z,ncol(Forma_F11)-6),ICC.fit11.GATH)
-colnames(ICC.fit11.DF) <- c('x', 'Pregunta','value')   ICC.fit11.DF <- data.frame(ICC.fit12.DF, rep('F011',nrow(ICC.fit11.DF)))   colnames(ICC.fit11.DF) <- c('x', 'Pregunta','value','Forma')
+colnames(ICC.fit11.DF) <- c('x', 'Pregunta','value')   
 #________12_________________________________________________
 
 Base12 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_12$Codigo.Estudiante,
