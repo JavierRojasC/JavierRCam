@@ -603,7 +603,7 @@ highchart()%>%
     x = 0,
     y = 100)%>%
   hc_title(text='Curva Característica del Ítem')%>%
-  hc_subtitle(text= paste0('Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>%
+  hc_subtitle(text= paste0('Forma: Todas las formas' ,'. Campo de conocimiento: ', materia,'.'))%>%
   hc_xAxis(title=list(text="Habilidad"))%>%
   hc_yAxis(title=list(text="Probabilidad"),
            plotLines = list(list(
@@ -1258,7 +1258,7 @@ library(tidyr)
       x = 0,
       y = 100)%>%
     hc_title(text='Curva de Información del Ítem')%>%
-    hc_subtitle(text= paste0('Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>%
+    hc_subtitle(text= paste0('Forma: Todas las formas' ,'. Campo de conocimiento: ', materia,'.'))%>%
     hc_xAxis(title=list(text="Habilidad"))%>%
     hc_yAxis(title=list(text="Información"),
              plotLines = list(list(
