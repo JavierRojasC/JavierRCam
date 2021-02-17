@@ -1236,18 +1236,18 @@ TodasFormas2 <- function(materia){
 
 library(tidyr)
   highchart()%>%
-    hc_add_series(ICC.fit1.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit2.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit3.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit4.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit5.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit6.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit7.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit8.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit9.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>%  
-    hc_add_series(ICC.fit10.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>% 
-    hc_add_series(ICC.fit11.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>% 
-    hc_add_series(ICC.fit12.DF, type='line', hcaes(x=round(x,3), y=round(value,3), group=as.factor(Pregunta)))%>% 
+    hc_add_series(ICC.fit1.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit2.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit3.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit4.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit5.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit6.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit7.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit8.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit9.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>%  
+    hc_add_series(ICC.fit10.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>% 
+    hc_add_series(ICC.fit11.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>% 
+    hc_add_series(ICC.fit12.DF, type='line', hcaes(x=x, y=round(value,3), group=as.factor(Pregunta)))%>% 
     
  
     hc_legend(
@@ -1257,10 +1257,10 @@ library(tidyr)
       layout = "vertical",
       x = 0,
       y = 100)%>%
-    hc_title(text='Curva Característica del Ítem')%>%
+    hc_title(text='Curva de Información del Ítem')%>%
     hc_subtitle(text= paste0('Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>%
     hc_xAxis(title=list(text="Habilidad"))%>%
-    hc_yAxis(title=list(text="Probabilidad"),
+    hc_yAxis(title=list(text="Información"),
              plotLines = list(list(
                value = 0.5,
                color = '#1D4B5E',
@@ -1269,10 +1269,10 @@ library(tidyr)
                zIndex = 4,
                label = list(text = "Selección al azar",
                             style = list( color = '#1D4B5E', fontWeight = 'bold' )))))%>%
-    hc_tooltip(pointFormat = "{point.Pregunta} <br> Prob: {point.y} <br>  Habilidad: {point.x} <br> Forma: {point.Forma}",
+    hc_tooltip(pointFormat = "{point.Pregunta} <br> Información: {point.y} <br>  Habilidad: {point.x} <br> Forma: {point.Forma}",
                headerFormat= '{point.Pregunta}')%>%
     hc_exporting(enabled = TRUE,
-                 filename = paste0('Curva Característica del Ítem - Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>% 
+                 filename = paste0('Curva de Información del Ítem - Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>% 
     hc_credits(
       enabled = TRUE,
       text = "Fuente: Senescyt",
