@@ -1874,3 +1874,564 @@ TodasFormas3 <- function(materia){
 }
 
 
+
+TodasFormas4 <- function(materia){
+  Detalle_vertical_pilotaje_para_ESPOL2_1 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F001')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_2 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F002')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_3 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F003')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_4 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F004')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_5 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F005')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_6 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F006')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_7 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F007')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_8 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F008')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_9 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F009')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_10 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F010')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_11 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F011')%>%
+    filter(Campo.de.conocimiento==materia)
+  Detalle_vertical_pilotaje_para_ESPOL2_12 = Detalle_vertical_pilotaje_para_ESPOL%>%
+    filter(Forma=='F012')%>%
+    filter(Campo.de.conocimiento==materia)
+  
+  
+  Base1 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_1$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_1$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_1$C.I)
+  
+  Base1$Correcta[Base1$C.I=='C'] <- 1
+  Base1$Correcta[Base1$C.I=='I'] <- 0
+  Base1 <- Base1[,-3]
+  CaractIndividuo1 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_1$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_1$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_1$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_1$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_1$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_1$sostenimiento)
+  
+  
+  
+  
+  B1 <- pivot_wider(Base1, names_from ='Pregunta', values_from = 'Correcta')
+  C1 <- merge(x=B1, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C1$distrito[is.na(C1$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F1 <- C1
+  
+  
+  Forma_F1[,which(colMeans(is.na(Forma_F1))>0)] <- NULL
+  
+  
+  
+  fit1 <- rasch(Forma_F1[,-c(1,ncol(Forma_F1),ncol(Forma_F1)-1,ncol(Forma_F1)-2,ncol(Forma_F1)-3,ncol(Forma_F1)-4)])
+  
+  COEF1 <- coef(fit1, prob = TRUE, order = TRUE)
+  Coeff1 <- data.frame(rownames(COEF1),COEF1)
+  colnames(Coeff1) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  
+  #_________________________________________________________
+  
+  
+  
+  
+  
+  
+  Base2 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_2$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_2$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_2$C.I)
+  
+  Base2$Correcta[Base2$C.I=='C'] <- 1
+  Base2$Correcta[Base2$C.I=='I'] <- 0
+  Base2 <- Base2[,-3]
+  CaractIndividuo2 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_2$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_2$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_2$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_2$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_2$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_2$sostenimiento)
+  
+  
+  
+  
+  B2 <- pivot_wider(Base2, names_from ='Pregunta', values_from = 'Correcta')
+  C2 <- merge(x=B2, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C2$distrito[is.na(C2$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F2 <- C2
+  
+  
+  Forma_F2[,which(colMeans(is.na(Forma_F2))>0)] <- NULL
+  
+  
+  
+  fit2 <- rasch(Forma_F2[,-c(1,ncol(Forma_F2),ncol(Forma_F2)-1,ncol(Forma_F2)-2,ncol(Forma_F2)-3,ncol(Forma_F2)-4)])
+  
+  
+  COEF2 <- coef(fit2, prob = TRUE, order = TRUE)
+  Coeff2 <- data.frame(rownames(COEF2),COEF2)
+  colnames(Coeff2) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  
+  #_3________________________________________________________
+  
+  
+  
+  
+  Base3 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_3$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_3$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_3$C.I)
+  
+  Base3$Correcta[Base3$C.I=='C'] <- 1
+  Base3$Correcta[Base3$C.I=='I'] <- 0
+  Base3 <- Base3[,-3]
+  CaractIndividuo3 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_3$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_3$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_3$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_3$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_3$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_3$sostenimiento)
+  
+  
+  
+  
+  B3 <- pivot_wider(Base3, names_from ='Pregunta', values_from = 'Correcta')
+  C3 <- merge(x=B3, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C3$distrito[is.na(C3$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F3 <- C3
+  
+  
+  Forma_F3[,which(colMeans(is.na(Forma_F3))>0)] <- NULL
+  
+  
+  
+  fit3 <- rasch(Forma_F3[,-c(1,ncol(Forma_F3),ncol(Forma_F3)-1,ncol(Forma_F3)-2,ncol(Forma_F3)-3,ncol(Forma_F3)-4)])
+  
+  
+  COEF3 <- coef(fit3, prob = TRUE, order = TRUE)
+  Coeff3 <- data.frame(rownames(COEF3),COEF3)
+  colnames(Coeff3) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  
+  #____4_____________________________________________________
+  
+  
+  
+  Base4 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_4$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_4$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_4$C.I)
+  
+  Base4$Correcta[Base4$C.I=='C'] <- 1
+  Base4$Correcta[Base4$C.I=='I'] <- 0
+  Base4 <- Base4[,-3]
+  CaractIndividuo4 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_4$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_4$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_4$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_4$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_4$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_4$sostenimiento)
+  
+  
+  
+  
+  B4 <- pivot_wider(Base4, names_from ='Pregunta', values_from = 'Correcta')
+  C4 <- merge(x=B4, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C4$distrito[is.na(C4$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F4 <- C4
+  
+  
+  Forma_F4[,which(colMeans(is.na(Forma_F4))>0)] <- NULL
+  
+  
+  
+  fit4 <- rasch(Forma_F4[,-c(1,ncol(Forma_F4),ncol(Forma_F4)-1,ncol(Forma_F4)-2,ncol(Forma_F4)-3,ncol(Forma_F4)-4)])
+  
+  
+  COEF4 <- coef(fit4, prob = TRUE, order = TRUE)
+  Coeff4 <- data.frame(rownames(COEF4),COEF4)
+  colnames(Coeff4) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #_____5____________________________________________________
+  
+  
+  Base5 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_5$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_5$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_5$C.I)
+  
+  Base5$Correcta[Base5$C.I=='C'] <- 1
+  Base5$Correcta[Base5$C.I=='I'] <- 0
+  Base5 <- Base5[,-3]
+  CaractIndividuo5 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_5$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_5$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_5$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_5$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_5$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_5$sostenimiento)
+  
+  
+  
+  
+  B5 <- pivot_wider(Base5, names_from ='Pregunta', values_from = 'Correcta')
+  C5 <- merge(x=B5, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C5$distrito[is.na(C5$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F5 <- C5
+  
+  
+  Forma_F5[,which(colMeans(is.na(Forma_F5))>0)] <- NULL
+  
+  
+  
+  fit5 <- rasch(Forma_F5[,-c(1,ncol(Forma_F5),ncol(Forma_F5)-1,ncol(Forma_F5)-2,ncol(Forma_F5)-3,ncol(Forma_F5)-4)])
+  
+  
+  COEF5 <- coef(fit5, prob = TRUE, order = TRUE)
+  Coeff5 <- data.frame(rownames(COEF5),COEF5)
+  colnames(Coeff5) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #_____6____________________________________________________
+  
+  
+  Base6 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_6$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_6$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_6$C.I)
+  
+  Base6$Correcta[Base6$C.I=='C'] <- 1
+  Base6$Correcta[Base6$C.I=='I'] <- 0
+  Base6 <- Base6[,-3]
+  CaractIndividuo6 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_6$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_6$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_6$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_6$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_6$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_6$sostenimiento)
+  
+  
+  
+  
+  B6 <- pivot_wider(Base6, names_from ='Pregunta', values_from = 'Correcta')
+  C6 <- merge(x=B6, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C6$distrito[is.na(C6$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F6 <- C6
+  
+  
+  Forma_F6[,which(colMeans(is.na(Forma_F6))>0)] <- NULL
+  
+  
+  
+  fit6 <- rasch(Forma_F6[,-c(1,ncol(Forma_F6),ncol(Forma_F6)-1,ncol(Forma_F6)-2,ncol(Forma_F6)-3,ncol(Forma_F6)-4)])
+  
+  
+  COEF6 <- coef(fit6, prob = TRUE, order = TRUE)
+  Coeff6 <- data.frame(rownames(COEF6),COEF6)
+  colnames(Coeff6) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #_____7____________________________________________________
+  
+  
+  
+  
+  Base7 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_7$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_7$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_7$C.I)
+  
+  Base7$Correcta[Base7$C.I=='C'] <- 1
+  Base7$Correcta[Base7$C.I=='I'] <- 0
+  Base7 <- Base7[,-3]
+  CaractIndividuo7 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_7$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_7$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_7$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_7$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_7$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_7$sostenimiento)
+  
+  
+  
+  
+  B7 <- pivot_wider(Base7, names_from ='Pregunta', values_from = 'Correcta')
+  C7 <- merge(x=B7, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C7$distrito[is.na(C7$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F7 <- C7
+  
+  
+  Forma_F7[,which(colMeans(is.na(Forma_F7))>0)] <- NULL
+  
+  
+  
+  fit7 <- rasch(Forma_F7[,-c(1,ncol(Forma_F7),ncol(Forma_F7)-1,ncol(Forma_F7)-2,ncol(Forma_F7)-3,ncol(Forma_F7)-4)])
+  
+  
+  COEF7 <- coef(fit7, prob = TRUE, order = TRUE)
+  Coeff7 <- data.frame(rownames(COEF7),COEF7)
+  colnames(Coeff7) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #_____8____________________________________________________
+  
+  Base8 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_8$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_8$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_8$C.I)
+  
+  Base8$Correcta[Base8$C.I=='C'] <- 1
+  Base8$Correcta[Base8$C.I=='I'] <- 0
+  Base8 <- Base8[,-3]
+  CaractIndividuo8 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_8$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_8$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_8$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_8$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_8$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_8$sostenimiento)
+  
+  
+  
+  
+  B8 <- pivot_wider(Base8, names_from ='Pregunta', values_from = 'Correcta')
+  C8 <- merge(x=B8, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C8$distrito[is.na(C8$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F8 <- C8
+  
+  
+  Forma_F8[,which(colMeans(is.na(Forma_F8))>0)] <- NULL
+  
+  
+  
+  fit8 <- rasch(Forma_F8[,-c(1,ncol(Forma_F8),ncol(Forma_F8)-1,ncol(Forma_F8)-2,ncol(Forma_F8)-3,ncol(Forma_F8)-4)])
+  
+  
+  COEF8 <- coef(fit8, prob = TRUE, order = TRUE)
+  Coeff8 <- data.frame(rownames(COEF8),COEF8)
+  colnames(Coeff8) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #_____9____________________________________________________
+  
+  Base9 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_9$Codigo.Estudiante,
+                      Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_9$Pregunta,
+                      `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_9$C.I)
+  
+  Base9$Correcta[Base9$C.I=='C'] <- 1
+  Base9$Correcta[Base9$C.I=='I'] <- 0
+  Base9 <- Base9[,-3]
+  CaractIndividuo9 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_9$`Codigo.Estudiante`,
+                                 Forma=Detalle_vertical_pilotaje_para_ESPOL2_9$Forma,
+                                 zona=Detalle_vertical_pilotaje_para_ESPOL2_9$zona,
+                                 amie=Detalle_vertical_pilotaje_para_ESPOL2_9$amie,
+                                 distrito=Detalle_vertical_pilotaje_para_ESPOL2_9$distrito,
+                                 sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_9$sostenimiento)
+  
+  
+  
+  
+  B9 <- pivot_wider(Base9, names_from ='Pregunta', values_from = 'Correcta')
+  C9 <- merge(x=B9, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C9$distrito[is.na(C9$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F9 <- C9
+  
+  
+  Forma_F9[,which(colMeans(is.na(Forma_F9))>0)] <- NULL
+  
+  
+  
+  fit9 <- rasch(Forma_F9[,-c(1,ncol(Forma_F9),ncol(Forma_F9)-1,ncol(Forma_F9)-2,ncol(Forma_F9)-3,ncol(Forma_F9)-4)])
+  
+  
+  COEF9 <- coef(fit9, prob = TRUE, order = TRUE)
+  Coeff9 <- data.frame(rownames(COEF9),COEF9)
+  colnames(Coeff9) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #_______10__________________________________________________
+  
+  
+  
+  Base10 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_10$Codigo.Estudiante,
+                       Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_10$Pregunta,
+                       `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_10$C.I)
+  
+  Base10$Correcta[Base10$C.I=='C'] <- 1
+  Base10$Correcta[Base10$C.I=='I'] <- 0
+  Base10 <- Base10[,-3]
+  CaractIndividuo10 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_10$`Codigo.Estudiante`,
+                                  Forma=Detalle_vertical_pilotaje_para_ESPOL2_10$Forma,
+                                  zona=Detalle_vertical_pilotaje_para_ESPOL2_10$zona,
+                                  amie=Detalle_vertical_pilotaje_para_ESPOL2_10$amie,
+                                  distrito=Detalle_vertical_pilotaje_para_ESPOL2_10$distrito,
+                                  sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_10$sostenimiento)
+  
+  
+  
+  
+  B10 <- pivot_wider(Base10, names_from ='Pregunta', values_from = 'Correcta')
+  C10 <- merge(x=B10, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C10$distrito[is.na(C10$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F10 <- C10
+  
+  
+  Forma_F10[,which(colMeans(is.na(Forma_F10))>0)] <- NULL
+  
+  
+  
+  fit10 <- rasch(Forma_F10[,-c(1,ncol(Forma_F10),ncol(Forma_F10)-1,ncol(Forma_F10)-2,ncol(Forma_F10)-3,ncol(Forma_F10)-4)])
+  
+  COEF10 <- coef(fit10, prob = TRUE, order = TRUE)
+  Coeff10 <- data.frame(rownames(COEF10),COEF10)
+  colnames(Coeff10) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #______11___________________________________________________
+  
+  Base11 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_11$Codigo.Estudiante,
+                       Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_11$Pregunta,
+                       `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_11$C.I)
+  
+  Base11$Correcta[Base11$C.I=='C'] <- 1
+  Base11$Correcta[Base11$C.I=='I'] <- 0
+  Base11 <- Base11[,-3]
+  CaractIndividuo11 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_11$`Codigo.Estudiante`,
+                                  Forma=Detalle_vertical_pilotaje_para_ESPOL2_11$Forma,
+                                  zona=Detalle_vertical_pilotaje_para_ESPOL2_11$zona,
+                                  amie=Detalle_vertical_pilotaje_para_ESPOL2_11$amie,
+                                  distrito=Detalle_vertical_pilotaje_para_ESPOL2_11$distrito,
+                                  sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_11$sostenimiento)
+  
+  
+  
+  
+  B11 <- pivot_wider(Base11, names_from ='Pregunta', values_from = 'Correcta')
+  C11 <- merge(x=B11, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C11$distrito[is.na(C11$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F11 <- C11
+  
+  
+  Forma_F11[,which(colMeans(is.na(Forma_F11))>0)] <- NULL
+  
+  
+  
+  fit11 <- rasch(Forma_F11[,-c(1,ncol(Forma_F11),ncol(Forma_F11)-1,ncol(Forma_F11)-2,ncol(Forma_F11)-3,ncol(Forma_F11)-4)])
+  
+  
+  COEF11 <- coef(fit11, prob = TRUE, order = TRUE)
+  Coeff11 <- data.frame(rownames(COEF11),COEF11)
+  colnames(Coeff11) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  #________12_________________________________________________
+  
+  Base12 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_12$Codigo.Estudiante,
+                       Pregunta=Detalle_vertical_pilotaje_para_ESPOL2_12$Pregunta,
+                       `C/I`=Detalle_vertical_pilotaje_para_ESPOL2_12$C.I)
+  
+  Base12$Correcta[Base12$C.I=='C'] <- 1
+  Base12$Correcta[Base12$C.I=='I'] <- 0
+  Base12 <- Base12[,-3]
+  CaractIndividuo12 <- data.frame('Codigo Estudiante'=Detalle_vertical_pilotaje_para_ESPOL2_12$`Codigo.Estudiante`,
+                                  Forma=Detalle_vertical_pilotaje_para_ESPOL2_12$Forma,
+                                  zona=Detalle_vertical_pilotaje_para_ESPOL2_12$zona,
+                                  amie=Detalle_vertical_pilotaje_para_ESPOL2_12$amie,
+                                  distrito=Detalle_vertical_pilotaje_para_ESPOL2_12$distrito,
+                                  sostenimiento=Detalle_vertical_pilotaje_para_ESPOL2_12$sostenimiento)
+  
+  
+  
+  
+  B12 <- pivot_wider(Base12, names_from ='Pregunta', values_from = 'Correcta')
+  C12 <- merge(x=B12, y=unique(CaractIndividuo1), all.x = TRUE,by = 'Codigo.Estudiante')
+  
+  C12$distrito[is.na(C12$distrito)] <- 'No registrado'
+  
+  
+  
+  Forma_F12 <- C12
+  
+  
+  Forma_F12[,which(colMeans(is.na(Forma_F12))>0)] <- NULL
+  
+  
+  
+  fit12 <- rasch(Forma_F12[,-c(1,ncol(Forma_F12),ncol(Forma_F12)-1,ncol(Forma_F12)-2,ncol(Forma_F12)-3,ncol(Forma_F12)-4)])
+  
+  
+  COEF12 <- coef(fit12, prob = TRUE, order = TRUE)
+  Coeff12 <- data.frame(rownames(COEF12),COEF12)
+  colnames(Coeff12) <- c('Pregunta','Dificultad','Discriminación','P(x=1|z=0)')
+  
+  #_________________________________________________________
+  
+  
+  Bas <- rbind(Coeff1,Coeff2,Coeff3,
+               Coeff4,
+               Coeff5,
+               Coeff6,
+               Coeff7,
+               Coeff8,
+               Coeff9,
+               Coeff10,
+               Coeff11,
+               Coeff12)
+  Names <- c(
+    rep('F001',nrow(Coeff1)),
+    rep('F002',nrow(Coeff2)),
+    rep('F003',nrow(Coeff3)),
+    rep('F004',nrow(Coeff4)),
+    rep('F005',nrow(Coeff5)),
+    rep('F006',nrow(Coeff6)),
+    rep('F007',nrow(Coeff7)),
+    rep('F008',nrow(Coeff8)),
+    rep('F009',nrow(Coeff9)),
+    rep('F010',nrow(Coeff10)),
+    rep('F011',nrow(Coeff11)),
+    rep('F012',nrow(Coeff12)))
+  
+  BaseUnida <- data.frame(Bas,Names)
+  colnames(BaseUnida) <- c('Pregunta','Dificultad','Discriminación','p(x=1|z=0)','Forma')
+  BaseUnida
+ 
+}
+Lengua <- TodasFormas4('Lengua y Literatura')
+CN <- TodasFormas4('Ciencias Naturales')
+CS <- TodasFormas4('Ciencias Sociales')
+Mate <- TodasFormas4('Matemática')
