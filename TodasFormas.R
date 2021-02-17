@@ -77,7 +77,8 @@ ICC.fit1 <- as.data.frame(ICC.fit1)
 ICC.fit1.GATH <- gather(ICC.fit1, key=z)
 ICC.fit1.DF <- data.frame(rep(ICC.fit1$z,ncol(Forma_F1)-6),ICC.fit1.GATH)
 colnames(ICC.fit1.DF) <- c('x', 'Pregunta','value')
-
+ICC.fit1.DF <- data.frame(ICC.fit1.DF, rep('F001',nrow(ICC.fit1.DF)))
+colnames(ICC.fit1.DF) <- c('x', 'Pregunta','value','Forma')
 
 
 #_________________________________________________________
@@ -126,7 +127,8 @@ ICC.fit2 <- as.data.frame(ICC.fit2)
 ICC.fit2.GATH <- gather(ICC.fit2, key=z)
 ICC.fit2.DF <- data.frame(rep(ICC.fit2$z,ncol(Forma_F2)-6),ICC.fit2.GATH)
 colnames(ICC.fit2.DF) <- c('x', 'Pregunta','value')
-
+ICC.fit2.DF <- data.frame(ICC.fit2.DF, rep('F002',nrow(ICC.fit2.DF)))
+colnames(ICC.fit2.DF) <- c('x', 'Pregunta','value','Forma')
 
 
 #_3________________________________________________________
@@ -173,7 +175,8 @@ ICC.fit3 <- as.data.frame(ICC.fit3)
 ICC.fit3.GATH <- gather(ICC.fit3, key=z)
 ICC.fit3.DF <- data.frame(rep(ICC.fit3$z,ncol(Forma_F3)-6),ICC.fit3.GATH)
 colnames(ICC.fit3.DF) <- c('x', 'Pregunta','value')
-
+ICC.fit3.DF <- data.frame(ICC.fit3.DF, rep('F003',nrow(ICC.fit3.DF)))
+colnames(ICC.fit3.DF) <- c('x', 'Pregunta','value','Forma')
 
 #____4_____________________________________________________
 
@@ -218,7 +221,8 @@ ICC.fit4 <- as.data.frame(ICC.fit4)
 ICC.fit4.GATH <- gather(ICC.fit4, key=z)
 ICC.fit4.DF <- data.frame(rep(ICC.fit4$z,ncol(Forma_F4)-6),ICC.fit4.GATH)
 colnames(ICC.fit4.DF) <- c('x', 'Pregunta','value')
-
+ICC.fit4.DF <- data.frame(ICC.fit4.DF, rep('F004',nrow(ICC.fit4.DF)))
+colnames(ICC.fit4.DF) <- c('x', 'Pregunta','value','Forma')
 #_____5____________________________________________________
 
 
@@ -261,7 +265,8 @@ ICC.fit5 <- as.data.frame(ICC.fit5)
 ICC.fit5.GATH <- gather(ICC.fit5, key=z)
 ICC.fit5.DF <- data.frame(rep(ICC.fit5$z,ncol(Forma_F5)-6),ICC.fit5.GATH)
 colnames(ICC.fit5.DF) <- c('x', 'Pregunta','value')
-
+ICC.fit5.DF <- data.frame(ICC.fit5.DF, rep('F005',nrow(ICC.fit5.DF)))
+colnames(ICC.fit5.DF) <- c('x', 'Pregunta','value','Forma')
 #_____6____________________________________________________
 
 
@@ -304,6 +309,8 @@ ICC.fit6 <- as.data.frame(ICC.fit6)
 ICC.fit6.GATH <- gather(ICC.fit6, key=z)
 ICC.fit6.DF <- data.frame(rep(ICC.fit6$z,ncol(Forma_F6)-6),ICC.fit6.GATH)
 colnames(ICC.fit6.DF) <- c('x', 'Pregunta','value')
+ICC.fit6.DF <- data.frame(ICC.fit6.DF, rep('F006',nrow(ICC.fit6.DF)))
+colnames(ICC.fit6.DF) <- c('x', 'Pregunta','value','Forma')
 
 #_____7____________________________________________________
 
@@ -349,6 +356,8 @@ ICC.fit7 <- as.data.frame(ICC.fit7)
 ICC.fit7.GATH <- gather(ICC.fit7, key=z)
 ICC.fit7.DF <- data.frame(rep(ICC.fit7$z,ncol(Forma_F7)-6),ICC.fit7.GATH)
 colnames(ICC.fit7.DF) <- c('x', 'Pregunta','value')
+ICC.fit7.DF <- data.frame(ICC.fit7.DF, rep('F007',nrow(ICC.fit7.DF)))
+colnames(ICC.fit7.DF) <- c('x', 'Pregunta','value','Forma')
 
 #_____8____________________________________________________
 
@@ -391,6 +400,8 @@ ICC.fit8 <- as.data.frame(ICC.fit8)
 ICC.fit8.GATH <- gather(ICC.fit8, key=z)
 ICC.fit8.DF <- data.frame(rep(ICC.fit8$z,ncol(Forma_F8)-6),ICC.fit8.GATH)
 colnames(ICC.fit8.DF) <- c('x', 'Pregunta','value')
+ICC.fit8.DF <- data.frame(ICC.fit8.DF, rep('F008',nrow(ICC.fit8.DF)))
+colnames(ICC.fit8.DF) <- c('x', 'Pregunta','value','Forma')
 #_____9____________________________________________________
 
 Base9 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_9$Codigo.Estudiante,
@@ -432,6 +443,8 @@ ICC.fit9 <- as.data.frame(ICC.fit9)
 ICC.fit9.GATH <- gather(ICC.fit9, key=z)
 ICC.fit9.DF <- data.frame(rep(ICC.fit9$z,ncol(Forma_F9)-6),ICC.fit9.GATH)
 colnames(ICC.fit9.DF) <- c('x', 'Pregunta','value')
+ICC.fit9.DF <- data.frame(ICC.fit9.DF, rep('F009',nrow(ICC.fit9.DF)))
+colnames(ICC.fit9.DF) <- c('x', 'Pregunta','value','Forma')
 #_______10__________________________________________________
 
 
@@ -475,6 +488,8 @@ ICC.fit10 <- as.data.frame(ICC.fit10)
 ICC.fit10.GATH <- gather(ICC.fit10, key=z)
 ICC.fit10.DF <- data.frame(rep(ICC.fit10$z,ncol(Forma_F10)-6),ICC.fit10.GATH)
 colnames(ICC.fit10.DF) <- c('x', 'Pregunta','value')
+ICC.fit10.DF <- data.frame(ICC.fit10.DF, rep('F010',nrow(ICC.fit10.DF)))
+colnames(ICC.fit10.DF) <- c('x', 'Pregunta','value','Forma')
 #______11___________________________________________________
 
 Base11 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_11$Codigo.Estudiante,
@@ -516,6 +531,8 @@ ICC.fit11 <- as.data.frame(ICC.fit11)
 ICC.fit11.GATH <- gather(ICC.fit11, key=z)
 ICC.fit11.DF <- data.frame(rep(ICC.fit11$z,ncol(Forma_F11)-6),ICC.fit11.GATH)
 colnames(ICC.fit11.DF) <- c('x', 'Pregunta','value')   
+ICC.fit11.DF <- data.frame(ICC.fit11.DF, rep('F011',nrow(ICC.fit11.DF)))
+colnames(ICC.fit11.DF) <- c('x', 'Pregunta','value','Forma')
 #________12_________________________________________________
 
 Base12 <- data.frame(Codigo.Estudiante=Detalle_vertical_pilotaje_para_ESPOL2_12$Codigo.Estudiante,
@@ -557,6 +574,8 @@ ICC.fit12 <- as.data.frame(ICC.fit12)
 ICC.fit12.GATH <- gather(ICC.fit12, key=z)
 ICC.fit12.DF <- data.frame(rep(ICC.fit12$z,ncol(Forma_F12)-6),ICC.fit12.GATH)
 colnames(ICC.fit12.DF) <- c('x', 'Pregunta','value')
+ICC.fit12.DF <- data.frame(ICC.fit12.DF, rep('F012',nrow(ICC.fit12.DF)))
+colnames(ICC.fit12.DF) <- c('x', 'Pregunta','value','Forma')
 #_________________________________________________________
 
 
@@ -595,7 +614,7 @@ highchart()%>%
              zIndex = 4,
              label = list(text = "Selección al azar",
                           style = list( color = '#1D4B5E', fontWeight = 'bold' )))))%>%
-  hc_tooltip(pointFormat = "{point.Pregunta} <br> Prob: {point.y} <br>  Habilidad: {point.x}",
+  hc_tooltip(pointFormat = "{point.Pregunta} <br> Prob: {point.y} <br>  Habilidad: {point.x} <br> Forma: {point.Forma}",
              headerFormat= '{point.Pregunta}')%>%
   hc_exporting(enabled = TRUE,
                filename = paste0('Curva Característica del Ítem - Forma: ',formas ,'. Campo de conocimiento: ', materia,'.'))%>% 
