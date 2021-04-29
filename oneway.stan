@@ -3,6 +3,7 @@ data {
   int<lower=0> J;
   int<lower=1,upper=J> predictor[N];
   vector[N] response;
+  real<lower=0> lambda;
 }
 parameters {
   vector[J] eta;
@@ -21,6 +22,6 @@ transformed parameters {
 }
 model {
   eta ~ normal(0, 1);
-
+  sigmaalpha ~ exponential(lambda);
   response ~ normal(yhat, sigmaepsilon);
 }
