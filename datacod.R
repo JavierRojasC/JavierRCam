@@ -12,11 +12,13 @@ Diabetes <- function(){
   return(Data_Diab)
 }
 
-DataACP <- function(){
+Deportes <- function(){
   require(readr)
   datos_tabla_5_2 <- read_delim("~/Downloads/datos_tabla_5_2.csv", 
                                 ";", escape_double = FALSE, trim_ws = TRUE)
+  names(datos_tabla_5_2) <- c('Soccer','Swimming','Tenis','Basketball')
   return(datos_tabla_5_2)
+  
 }
 
 #cienciasletras <- CienciasLetras()
